@@ -1,10 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 // from post https://mp.weixin.qq.com/s/QaEZuMRGTf07pml_h1rhxA
-public class Clock : MonoBehaviour
-{
+public class Clock : MonoBehaviour {
     public Transform MainCamera;
     public bool Continuous = true;
     public Transform BasicNode;
@@ -18,8 +17,7 @@ public class Clock : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         MainCamera.transform.position = new Vector3(0, 10, 0);
         // https://blog.csdn.net/icevmj/article/details/80280929
         MainCamera.transform.Rotate(new Vector3(90, 0, 90), Space.World);
@@ -34,23 +32,19 @@ public class Clock : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {   // - 3 是为了适应上面创建的时间指示所做的旋转
+    void Update() {   // - 3 是为了适应上面创建的时间指示所做的旋转
         float rotateOffset = 3;
         // 每个字数间,跳动五次
         float tickPerMinuteSecond = 5;
         float hour = 0, minute = 0, second = 0;
 
-        if (Continuous)
-        {
+        if (Continuous) {
 
             TimeSpan n = DateTime.Now.TimeOfDay;
             hour = (float)n.TotalHours;
             minute = (float)n.TotalMinutes;
             second = (float)n.TotalSeconds;
-        }
-        else
-        {
+        } else {
 
             DateTime n = DateTime.Now;
             hour = n.Hour;
@@ -68,8 +62,7 @@ public class Clock : MonoBehaviour
     }
 
     // 创建秒针声音
-    private void CreateSound()
-    {
+    private void CreateSound() {
         GameObject obj = new GameObject();
         obj.name = "TicTok";
         AudioSource a = obj.AddComponent<AudioSource>();
@@ -83,8 +76,7 @@ public class Clock : MonoBehaviour
     }
 
     // 创建表盘
-    private void CreateClockFace()
-    {
+    private void CreateClockFace() {
         GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         cylinder.transform.parent = BasicNode;
         cylinder.transform.localScale = new Vector3(10f, 0.1f, 10f);
@@ -92,12 +84,10 @@ public class Clock : MonoBehaviour
     }
 
     // 小时指示器
-    private void CreateIndicator()
-    {
+    private void CreateIndicator() {
         Material myNewMaterial = new Material(Shader.Find("Standard"));
         myNewMaterial.color = new Color(0.28f, 0.28f, 0.28f);
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             // 制做一个临时的 parentCube
             // 实现旋转
             // 默认的中心点就是原点
@@ -120,8 +110,7 @@ public class Clock : MonoBehaviour
         }
     }
     // 创建时针
-    private void CreateHourTick()
-    {
+    private void CreateHourTick() {
         Material myNewMaterial = new Material(Shader.Find("Standard"));
         myNewMaterial.color = new Color(0.28f, 0.28f, 0.28f);
         GameObject parentCube = new GameObject();
@@ -137,8 +126,7 @@ public class Clock : MonoBehaviour
     }
 
     // 创建分针
-    private void CreateMinuteTick()
-    {
+    private void CreateMinuteTick() {
 
         Material myNewMaterial = new Material(Shader.Find("Standard"));
         myNewMaterial.color = new Color(0.28f, 0.28f, 0.28f);
@@ -155,8 +143,7 @@ public class Clock : MonoBehaviour
     }
 
     // 创建秒针
-    private void CreateSecondTick()
-    {
+    private void CreateSecondTick() {
         Material myNewMaterial = new Material(Shader.Find("Standard"));
         myNewMaterial.color = new Color(0.77f, 0, 0f);
         GameObject parentCube = new GameObject();

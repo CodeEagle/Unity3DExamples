@@ -1,25 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 // from post https://mp.weixin.qq.com/s/fE5BMEx_gSJ7GtcmxZE6sQ
-public class SineWave : MonoBehaviour
-{
+public class SineWave : MonoBehaviour {
     Transform pointPrefab;
     Transform[] points;
     [Range(10, 100)] public int resolution = 10;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         CraetePrefab();
         CreateGraph();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        for (int i = 0; i < points.Length; i++)
-        {
+    void Update() {
+        for (int i = 0; i < points.Length; i++) {
             Transform point = points[i];
             Vector3 position = point.localPosition;
             position.y = Mathf.Sin(Mathf.PI * (position.x + Time.time));
@@ -27,14 +23,12 @@ public class SineWave : MonoBehaviour
         }
     }
 
-    private void CreateGraph()
-    {
+    private void CreateGraph() {
         float step = 2f / resolution;
         Vector3 scale = Vector3.one * step;
         Vector3 position = Vector3.zero;
         points = new Transform[resolution];
-        for (int i = 0; i < points.Length; i++)
-        {
+        for (int i = 0; i < points.Length; i++) {
             Transform point = Instantiate(pointPrefab);
             position.x = (i + 0.5f) * step - 1f;
             position.y = position.x * position.x * position.x;
@@ -44,8 +38,7 @@ public class SineWave : MonoBehaviour
             points[i] = point;
         }
     }
-    private void CraetePrefab()
-    {
+    private void CraetePrefab() {
         GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
         obj.name = "cube";
         obj.GetComponent<BoxCollider>().enabled = false;

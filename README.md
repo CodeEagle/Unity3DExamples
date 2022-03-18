@@ -10,4 +10,9 @@
 Scenes
 |-Clock
 |-SineWave
+|-DigitalEngraving
 ```
+
+# 代码格式化
+
+https://wk-j.medium.com/visual-studio-code-c-put-the-opening-brace-on-the-same-line-as-the-statement-a98c552a544b
