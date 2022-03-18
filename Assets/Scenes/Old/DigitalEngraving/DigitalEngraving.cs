@@ -138,6 +138,8 @@ public class DigitalEngraving : MonoBehaviour {
 
         // 脉冲球
         float r = 0.8f + Mathf.Sin(pi * (6f * u + t)) * 0.1f;
+        // https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/
+        // float r = 0.9f + 0.1f * Mathf.Sin(pi * (6f * u + 4f * v + t));
         r += Mathf.Sin(pi * (4f * v + t)) * 0.1f;
         float s = r * Mathf.Cos(pi * 0.5f * v);
         p.x = s * Mathf.Sin(pi * u);
@@ -151,9 +153,15 @@ public class DigitalEngraving : MonoBehaviour {
         // 环环面
         // float r1 = 1f;
         // float r2 = 0.5f;
+
         // 动态
-        float r1 = 0.65f + Mathf.Sin(pi * (6f * u + t)) * 0.1f;
-        float r2 = 0.2f + Mathf.Sin(pi * (4f * v + t)) * 0.1f;
+        // float r1 = 0.65f + Mathf.Sin(pi * (6f * u + t)) * 0.1f;
+        // float r2 = 0.2f + Mathf.Sin(pi * (4f * v + t)) * 0.1f;
+
+        // 
+        // https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/
+        float r1 = 0.7f + 0.1f * Mathf.Sin(pi * (6f * u + 0.5f * t));
+        float r2 = 0.15f + 0.05f * Mathf.Sin(pi * (8f * u + 4f * v + 2f * t));
 
         float s = r2 * Mathf.Cos(pi * v) + r1;
         p.x = s * Mathf.Sin(pi * u);
